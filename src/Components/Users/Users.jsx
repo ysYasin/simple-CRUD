@@ -29,6 +29,9 @@ const Users = () => {
             progress: undefined,
             theme: "light",
           });
+
+          const remaining = users.filter((user) => user._id !== id);
+          setUsers(remaining);
         } else {
           toast.warning(`${name} not deleted from User`, {
             position: "top-center",
@@ -52,6 +55,7 @@ const Users = () => {
         {users.map((user) => (
           <li key={user._id}>
             {user.name} : {user.email} {user._id} {"  "}
+            <Link to={`/update/${user._id}`}>Update</Link> {"  "}
             <button onClick={() => handleDelet(user._id, user.name)}>X</button>
           </li>
         ))}
